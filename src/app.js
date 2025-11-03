@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const mainRoutes = require('./routes/main');
+const playersRoutes = require('./modules/players/players.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 // CORS Headers
 app.use(cors());
 
-// all the routes that starts by /main will be attended by this router
-app.use('/main', mainRoutes);
+// all the routes that starts by /player will be attended by this router
+app.use('/players', playersRoutes);
 
 // Add the message here
 app.listen(PORT, () => {

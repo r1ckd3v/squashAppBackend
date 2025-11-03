@@ -1,23 +1,23 @@
 {
-  "name": "restapi-template",
+  "name": "squash-app-backend",
   "version": "1.0.0",
-  "description": "REST API Template",
-  "main": "index.js",
+  "description": "Squash App Backend",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/r1ckd3v/restAPI-template.git"
+    "url": "git+https://github.com/r1ckd3v/squashAppBackend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/r1ckd3v/restAPI-template/issues"
+    "url": "https://github.com/r1ckd3v/squashAppBackend/issues"
   },
-  "homepage": "https://github.com/r1ckd3v/restAPI-template#readme",
+  "homepage": "https://github.com/r1ckd3v/squashAppBackend#readme",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
