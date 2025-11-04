@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 // CORS Headers
 app.use(cors());
 
-// all the routes that starts by /player will be attended by this router
+// all the routes that starts by /players will be attended by this router
 app.use('/players', playersRoutes);
 
 // Add the message here

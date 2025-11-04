@@ -8,5 +8,22 @@ This is an Express Server to handle the backend of the Squash App
 
 # Routes
 
-GET - `/main/posts`
-POST - `/main/posts`
+## Players
+
+### Create
+
+POST `/players/create`
+
+### Read
+
+GET `/players/all`
+GET `/players/:id`
+
+### Update
+
+PATCH `/players/:id`
+PUT `/players/:id`
+
+### Delete
+
+DELETE `/players/:id`
