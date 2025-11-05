@@ -19,6 +19,13 @@ app.use(cors());
 // all the routes that starts by /players will be attended by this router
 app.use('/players', playersRoutes);
 app.use(healthCheckRoute);
+app.use((req, res) => {
+  res.status(404).send({
+    message: 'Page Not Found',
+    status: 404,
+    ok: false,
+  });
+});
 
 sequelize
   .authenticate()
