@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      player_id: { type: DataTypes.INTEGER },
+      player_id: { type: DataTypes.INTEGER, unique: true },
       points: DataTypes.INTEGER,
       last_updated: DataTypes.DATEONLY,
     },

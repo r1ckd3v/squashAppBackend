@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
       foreignKey: 'player_id',
       as: 'clubHistory',
     });
-    Players.hasMany(models.Rankings, {
+    Players.hasOne(models.Rankings, {
       foreignKey: 'player_id',
       as: 'rankings',
     });

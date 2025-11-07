@@ -16,7 +16,7 @@ router.get('/:id', playersController.getPlayer);
 // Update Player
 
 router.patch('/:id', playersController.patchPlayer);
-router.put('/:id', playersController.putPlayer);
+// router.put('/:id', playersController.putPlayer);
 
 // Delete Player
 

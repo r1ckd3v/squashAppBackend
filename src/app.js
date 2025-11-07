@@ -6,6 +6,9 @@ const { sequelize } = require('./models'); // loading Models
 
 const playersRoutes = require('./modules/players/players.routes');
 const healthCheckRoute = require('./modules/healthCheck/healthCheck.routes');
+const authRoutes = require('./modules/auth/auth.routes');
+const clubsRoutes = require('./modules/clubs/clubs.routes');
+const categoriesRoutes = require('./modules/categories/categories.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,8 +19,10 @@ app.use(bodyParser.json());
 // CORS Headers
 app.use(cors());
 
-// all the routes that starts by /players will be attended by this router
+app.use('/auth', authRoutes);
 app.use('/players', playersRoutes);
+app.use('/clubs', clubsRoutes);
+app.use('/categories', categoriesRoutes);
 app.use(healthCheckRoute);
 app.use((req, res) => {
   res.status(404).send({
