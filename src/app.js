@@ -2,7 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { sequelize } = require('./models'); // loading Models
+
+const http = require('http');
+const { initSocket } = require('./socket/socket');
+
+const { sequelize } = require('./models');
 
 const playersRoutes = require('./modules/players/players.routes');
 const healthCheckRoute = require('./modules/healthCheck/healthCheck.routes');
@@ -24,6 +28,7 @@ app.use('/players', playersRoutes);
 app.use('/clubs', clubsRoutes);
 app.use('/categories', categoriesRoutes);
 app.use(healthCheckRoute);
+//404
 app.use((req, res) => {
   res.status(404).send({
     message: 'Page Not Found',
@@ -31,6 +36,11 @@ app.use((req, res) => {
     ok: false,
   });
 });
+
+// Create HTTP server and init socket.io ONCE here
+const server = http.createServer(app);
+const io = initSocket(server);
+app.set('io', io); // expose via req.app.get('io')
 
 sequelize
   .authenticate()
@@ -41,8 +51,10 @@ sequelize
   .then(() => {
     console.log('✅ DB synced');
 
-    app.listen(PORT, () => {
-      console.log(`✅ Server is running on http://localhost:${PORT}`);
+    server.listen(PORT, () => {
+      console.log(
+        `✅ Server (HTTP + WebSocket) running on http://localhost:${PORT}`
+      );
     });
   })
   .catch((err) => {
