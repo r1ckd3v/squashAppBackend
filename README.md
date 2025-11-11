@@ -5,7 +5,9 @@ This is an Express Server to handle the backend of the Squash Tournaments App
 # Start the server
 
 1. Enable the Database Container `docker-compose up -d` or `podman-compose up -d`
-2. Start the server `npm start`
+2. Run the Migrations `npm run db:migrate`
+3. Run the Seeders `npm run db:seed`
+4. Start the server `npm start`
 
 # Routes
 

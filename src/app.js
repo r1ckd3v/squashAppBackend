@@ -30,11 +30,11 @@ app.use('/categories', categoriesRoutes);
 app.use(healthCheckRoute);
 //404
 app.use((req, res) => {
-  res.status(404).send({
-    message: 'Page Not Found',
-    status: 404,
-    ok: false,
-  });
+    res.status(404).send({
+        message: 'Page Not Found',
+        status: 404,
+        ok: false,
+    });
 });
 
 // Create HTTP server and init socket.io ONCE here
@@ -43,20 +43,18 @@ const io = initSocket(server);
 app.set('io', io); // expose via req.app.get('io')
 
 sequelize
-  .authenticate()
-  .then(() => {
-    console.log('✅ Connected to the Postgres DB successfully!');
-    return sequelize.sync();
-  })
-  .then(() => {
-    console.log('✅ DB synced');
+    .authenticate()
+    .then(() => {
+        console.log('✅ Connected to the Postgres DB successfully!');
+        console.log('ℹ️ Run migrations manually with: npm run db:migrate');
+        console.log('🌱 Run seeders manually with: npm run db:seed');
 
-    server.listen(PORT, () => {
-      console.log(
-        `✅ Server (HTTP + WebSocket) running on http://localhost:${PORT}`
-      );
+        server.listen(PORT, () => {
+            console.log(
+                `✅ Server (HTTP + WebSocket) running on http://localhost:${PORT}`
+            );
+        });
+    })
+    .catch((err) => {
+        console.log('Database Connection Failed: ', err);
     });
-  })
-  .catch((err) => {
-    console.log(err);
-  });

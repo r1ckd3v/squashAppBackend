@@ -9,9 +9,10 @@ module.exports = (sequelize) => {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            tournament_id: { type: DataTypes.INTEGER },
-            player1_id: { type: DataTypes.INTEGER },
-            player2_id: { type: DataTypes.INTEGER },
+            tournament_id: { type: DataTypes.INTEGER, allowNull: false },
+            player1_id: { type: DataTypes.INTEGER, allowNull: false },
+            player2_id: { type: DataTypes.INTEGER, allowNull: false },
+            winner_id: { type: DataTypes.INTEGER, allowNull: false },
             match_date: DataTypes.DATE, // DATETIME in SQL
             result: DataTypes.STRING(20),
             round: DataTypes.STRING(50),
@@ -34,6 +35,10 @@ module.exports = (sequelize) => {
         Matches.belongsTo(models.Players, {
             foreignKey: 'player2_id',
             as: 'player2',
+        });
+        Matches.belongsTo(models.Players, {
+            foreignKey: 'winner_id',
+            as: 'winner',
         });
         Matches.hasMany(models.Games, { foreignKey: 'match_id', as: 'Games' });
     };
