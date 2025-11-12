@@ -81,6 +81,10 @@ module.exports = {
                 club_join_date: '2021-08-10',
             },
         ]);
+        // ✅ Reset the sequence so auto-increment continues after 3
+        await q.sequelize
+            .query(`SELECT setval(pg_get_serial_sequence('"Players"', 'player_id'),
+        (SELECT COALESCE(MAX("player_id"), 0) FROM "Players"));`);
     },
     down: async (q) => {
         await q.bulkDelete('Players', { player_id: [1, 2, 3, 4, 5, 6] });

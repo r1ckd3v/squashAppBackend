@@ -39,6 +39,10 @@ module.exports = {
                 last_updated: '2025-03-13',
             },
         ]);
+        // ✅ Reset the sequence so auto-increment continues after 3
+        await q.sequelize
+            .query(`SELECT setval(pg_get_serial_sequence('"Ranking"', 'ranking_id'),
+        (SELECT COALESCE(MAX("ranking_id"), 0) FROM "Ranking"));`);
     },
     down: async (q) => {
         await q.bulkDelete('Ranking', { ranking_id: [1, 2, 3, 4, 5, 6] });

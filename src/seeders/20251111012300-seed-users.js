@@ -24,6 +24,10 @@ module.exports = {
                 roles: ['viewer'],
             },
         ]);
+        // ✅ Reset the sequence so auto-increment continues after 3
+        await q.sequelize
+            .query(`SELECT setval(pg_get_serial_sequence('"Users"', 'user_id'),
+        (SELECT COALESCE(MAX("user_id"), 0) FROM "Users"));`);
     },
     down: async (q) => {
         await q.bulkDelete('Users', { user_id: [1, 2, 3] });
