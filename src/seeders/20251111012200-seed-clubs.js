@@ -30,6 +30,10 @@ module.exports = {
                 email: 'info@cordillerapadel.bo',
             },
         ]);
+        // ✅ Reset the sequence so auto-increment continues after 3
+        await q.sequelize
+            .query(`SELECT setval(pg_get_serial_sequence('"Clubs"', 'club_id'),
+        (SELECT COALESCE(MAX("club_id"), 0) FROM "Clubs"));`);
     },
     down: async (q) => {
         await q.bulkDelete('Clubs', { club_id: [1, 2, 3] });

@@ -1,7 +1,21 @@
-const router = require('express').Router();
+const express = require('express');
 const clubs = require('./clubs.controllers');
 
-router.post('/create', clubs.createClub);
-router.get('/all', clubs.getClubs);
+const router = express.Router();
+
+// CRUD
+
+// Create Club
+router.post('/', clubs.postClub);
+
+// Read Clubs
+router.get('/', clubs.getClubs);
+router.get('/:id', clubs.getClub);
+
+// Update Club
+router.patch('/:id', clubs.patchClub);
+
+// Delete Club
+router.delete('/:id', clubs.deleteClub);
 
 module.exports = router;

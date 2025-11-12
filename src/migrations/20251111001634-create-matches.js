@@ -52,14 +52,8 @@ module.exports = {
         await q.addIndex('Matches', ['tournament_id']);
         await q.addIndex('Matches', ['player1_id']);
         await q.addIndex('Matches', ['player2_id']);
-
-        // Optional rule: forbid same player on both sides (Postgres)
-        // await q.sequelize.query(
-        //   'ALTER TABLE "Matches" ADD CONSTRAINT matches_player_diff CHECK (player1_id IS NULL OR player2_id IS NULL OR player1_id <> player2_id);'
-        // );
     },
     down: async (q) => {
-        // await q.sequelize.query('ALTER TABLE "Matches" DROP CONSTRAINT IF EXISTS matches_player_diff;').catch(() => {});
         await q.dropTable('Matches');
     },
 };

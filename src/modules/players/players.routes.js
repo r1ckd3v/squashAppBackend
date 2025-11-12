@@ -6,11 +6,11 @@ const router = express.Router();
 // CRUD
 
 // Create Player
-router.post('/create', playersController.postCreatePlayer);
+router.post('/', playersController.postPlayer);
 
 // Read Players
 
-router.get('/all', playersController.getPlayers);
+router.get('/', playersController.getPlayers);
 router.get('/:id', playersController.getPlayer);
 
 // Update Player
