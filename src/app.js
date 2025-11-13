@@ -13,6 +13,8 @@ const healthCheckRoute = require('./modules/healthCheck/healthCheck.routes');
 const authRoutes = require('./modules/auth/auth.routes');
 const clubsRoutes = require('./modules/clubs/clubs.routes');
 const categoriesRoutes = require('./modules/categories/categories.routes');
+const matchesRoutes = require('./modules/matches/matches.routes');
+const gamesRoutes = require('./modules/games/games.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +29,8 @@ app.use('/auth', authRoutes);
 app.use('/players', playersRoutes);
 app.use('/clubs', clubsRoutes);
 app.use('/categories', categoriesRoutes);
+app.use('/matches', matchesRoutes);
+app.use('/games', gamesRoutes);
 app.use(healthCheckRoute);
 //404
 app.use((req, res) => {

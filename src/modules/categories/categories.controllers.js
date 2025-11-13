@@ -5,7 +5,7 @@ exports.postCategory = (req, res) => {
     Player_Categories.create(req.body)
         .then((category) =>
             res.status(201).json({
-                message: '✅ Player category created successfully!',
+                message: 'Player category created successfully!',
                 category,
             })
         )
@@ -35,7 +35,7 @@ exports.getCategory = (req, res) => {
                     .status(404)
                     .json({ message: `Category with id: ${id} not found.` });
             const message = {
-                message: `✅ Category with id: ${id} fetched successfully!`,
+                message: `Category with id: ${id} fetched successfully!`,
                 cat,
             };
             res.json(message);
@@ -57,7 +57,7 @@ exports.patchCategory = (req, res) => {
                     .json({ message: `Category ${id} not found.` });
             return cat.update(req.body).then((updated) => {
                 const message = {
-                    message: `✅ Category with id: ${id} updated successfully!`,
+                    message: `Category with id: ${id} updated successfully!`,
                     category: updated,
                 };
                 res.json(message);
@@ -79,7 +79,7 @@ exports.deleteCategory = (req, res) => {
                     .status(404)
                     .json({ message: `Category ${id} not found.` });
             const message = {
-                message: `✅ Category ${id} deleted successfully!`,
+                message: `Category ${id} deleted successfully!`,
             };
             res.json(message);
         })

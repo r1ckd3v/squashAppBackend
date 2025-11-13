@@ -36,13 +36,13 @@ module.exports = {
                 },
                 winner_id: {
                     type: S.INTEGER,
-                    allowNull: false,
+                    allowNull: true,
                     references: { model: 'Players', key: 'player_id' },
                     onUpdate: 'CASCADE',
                     onDelete: 'SET NULL',
                 },
 
-                match_date: S.DATE, // DATETIME equivalent
+                match_date: { type: S.DATE, allowNull: false },
                 result: S.STRING(20),
                 round: S.STRING(50),
             },

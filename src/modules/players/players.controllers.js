@@ -5,7 +5,7 @@ exports.postPlayer = (req, res) => {
     Players.create(req.body)
         .then((player) => {
             const message = {
-                message: '✅ Player created successfully!',
+                message: 'Player created successfully!',
                 player,
             };
             res.status(201).json(message);
@@ -27,7 +27,7 @@ exports.getPlayers = (req, res) => {
     })
         .then((rows) => {
             const message = {
-                message: '✅ Players fetched successfully!',
+                message: 'Players fetched successfully!',
                 total: rows.length,
                 players: rows,
             };
@@ -55,7 +55,7 @@ exports.getPlayer = (req, res) => {
                     .status(404)
                     .json({ message: `Player with id: ${id} not found.` });
             const message = {
-                message: `✅ Player with id: ${id} fetched successfully!`,
+                message: `Player with id: ${id} fetched successfully!`,
                 player,
             };
             res.json(message);
@@ -78,7 +78,7 @@ exports.patchPlayer = (req, res) => {
                     .json({ message: `Player ${id} not found.` });
             return player.update(req.body).then((updated) => {
                 const message = {
-                    message: `✅ Player with id: ${id} updated successfully!`,
+                    message: `Player with id: ${id} updated successfully!`,
                     player: updated,
                 };
                 res.json(message);
@@ -110,7 +110,7 @@ exports.deletePlayer = (req, res) => {
                     .status(404)
                     .json({ message: `Player ${id} not found.` });
             const message = {
-                message: `✅ Player ${id} deleted successfully!`,
+                message: `Player ${id} deleted successfully!`,
             };
             res.json(message);
             req.app.get('io').emit('player:delete', message);

@@ -5,7 +5,7 @@ exports.postClub = (req, res) => {
     Clubs.create(req.body)
         .then((club) =>
             res.status(201).json({
-                message: '✅ Club created successfully!',
+                message: 'Club created successfully!',
                 club,
             })
         )
@@ -35,7 +35,7 @@ exports.getClub = (req, res) => {
                     .status(404)
                     .json({ message: `Club with id: ${id} not found.` });
             const message = {
-                message: `✅ Club with id: ${id} fetched successfully!`,
+                message: `Club with id: ${id} fetched successfully!`,
                 club,
             };
             res.json(message);
@@ -57,7 +57,7 @@ exports.patchClub = (req, res) => {
                     .json({ message: `Club ${id} not found.` });
             return club.update(req.body).then((updated) => {
                 const message = {
-                    message: `✅ Club with id: ${id} updated successfully!`,
+                    message: `Club with id: ${id} updated successfully!`,
                     club: updated,
                 };
                 res.json(message);
@@ -79,7 +79,7 @@ exports.deleteClub = (req, res) => {
                     .status(404)
                     .json({ message: `Club ${id} not found.` });
             const message = {
-                message: `✅ Club ${id} deleted successfully!`,
+                message: `Club ${id} deleted successfully!`,
             };
             res.json(message);
         })

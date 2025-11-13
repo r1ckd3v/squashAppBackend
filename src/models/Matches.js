@@ -12,8 +12,8 @@ module.exports = (sequelize) => {
             tournament_id: { type: DataTypes.INTEGER, allowNull: false },
             player1_id: { type: DataTypes.INTEGER, allowNull: false },
             player2_id: { type: DataTypes.INTEGER, allowNull: false },
-            winner_id: { type: DataTypes.INTEGER, allowNull: false },
-            match_date: DataTypes.DATE, // DATETIME in SQL
+            winner_id: { type: DataTypes.INTEGER, allowNull: true },
+            match_date: { type: DataTypes.DATE, allowNull: false },
             result: DataTypes.STRING(20),
             round: DataTypes.STRING(50),
         },
