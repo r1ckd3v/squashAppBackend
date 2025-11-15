@@ -18,7 +18,7 @@ module.exports = {
                 description: 'Over-40 division',
             },
         ]);
-        // ✅ Reset the sequence so auto-increment continues after 3
+        // Reset the sequence so auto-increment continues after 3
         await q.sequelize
             .query(`SELECT setval(pg_get_serial_sequence('"Player_Categories"', 'category_id'),
         (SELECT COALESCE(MAX("category_id"), 0) FROM "Player_Categories"));`);

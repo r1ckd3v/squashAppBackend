@@ -39,7 +39,7 @@ module.exports = {
                 winner_id: 3,
             },
         ]);
-        // ✅ Reset the sequence so auto-increment continues after 3
+        // Reset the sequence so auto-increment continues after 3
         await q.sequelize
             .query(`SELECT setval(pg_get_serial_sequence('"Matches"', 'match_id'),
         (SELECT COALESCE(MAX("match_id"), 0) FROM "Matches"));`);

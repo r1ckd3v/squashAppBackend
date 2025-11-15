@@ -45,7 +45,7 @@ module.exports = {
                 end_date: null,
             },
         ]);
-        // ✅ Reset the sequence so auto-increment continues after 3
+        // Reset the sequence so auto-increment continues after 3
         await q.sequelize
             .query(`SELECT setval(pg_get_serial_sequence('"Club_History"', 'history_id'),
         (SELECT COALESCE(MAX("history_id"), 0) FROM "Club_History"));`);

@@ -16,6 +16,8 @@ const categoriesRoutes = require('./modules/categories/categories.routes');
 const matchesRoutes = require('./modules/matches/matches.routes');
 const gamesRoutes = require('./modules/games/games.routes');
 
+const auth = require('./middleware/auth');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -26,7 +28,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/auth', authRoutes);
-app.use('/players', playersRoutes);
+app.use('/players', auth, playersRoutes);
 app.use('/clubs', clubsRoutes);
 app.use('/categories', categoriesRoutes);
 app.use('/matches', matchesRoutes);
@@ -50,12 +52,12 @@ sequelize
     .authenticate()
     .then(() => {
         console.log('✅ Connected to the Postgres DB successfully!');
-        console.log('ℹ️ Run migrations manually with: npm run db:migrate');
+        console.log('💾 Run migrations manually with: npm run db:migrate');
         console.log('🌱 Run seeders manually with: npm run db:seed');
 
         server.listen(PORT, () => {
             console.log(
-                `✅ Server (HTTP + WebSocket) running on http://localhost:${PORT}`
+                `🎮 Server (HTTP + WebSockets) running on http://localhost:${PORT}`
             );
         });
     })

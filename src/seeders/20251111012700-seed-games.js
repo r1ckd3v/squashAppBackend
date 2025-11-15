@@ -73,7 +73,7 @@ module.exports = {
                 player2_points: 8,
             },
         ]);
-        // ✅ Reset the sequence so auto-increment continues after 3
+        // Reset the sequence so auto-increment continues after 3
         await q.sequelize
             .query(`SELECT setval(pg_get_serial_sequence('"Games"', 'game_id'),
         (SELECT COALESCE(MAX("game_id"), 0) FROM "Games"));`);

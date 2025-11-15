@@ -1,0 +1,883 @@
+{
+	"info": {
+		"_postman_id": "b1703b32-26d8-4666-b906-00dca71566fc",
+		"name": "SquashApp",
+		"description": "# SquashApp API\n\nThe SquashApp API is a comprehensive platform for managing squash club operations, including player management, match scheduling, game tracking, and club administration.\n\n## Overview\n\nThis API provides endpoints to:\n- Manage player profiles and registrations\n- Organize clubs and their memberships\n- Create and track matches between players\n- Record individual games within matches\n- Categorize players by skill level or divisions\n- Handle user authentication and authorization\n\n## Getting Started\n\n1. **Authentication**: Register a new account using the SignUp endpoint, then login to receive an authentication token\n2. **Base URL**: Set the `{{URL}}` variable in your environment to point to your SquashApp API instance\n3. **Authorization**: Most endpoints require authentication - include your auth token in requests after logging in\n\n## API Structure\n\nThe API is organized into the following resource groups:\n- **Health Check**: Verify API availability\n- **Auth**: User registration, login, and profile management\n- **Players**: CRUD operations for player profiles\n- **Clubs**: Manage squash clubs and facilities\n- **Categories**: Organize players into skill-based categories\n- **Matches**: Schedule and manage matches between players\n- **Games**: Track individual games within matches, including scoring\n\n## Common Patterns\n\n- **List endpoints**: Return arrays of resources (e.g., GET /players)\n- **Detail endpoints**: Return single resources by ID (e.g., GET /players/:id)\n- **Create endpoints**: Use POST with JSON body to create new resources\n- **Update endpoints**: Use PATCH with JSON body to modify existing resources\n- **Delete endpoints**: Use DELETE to remove resources by ID\n\n## Response Format\n\nAll responses are returned in JSON format with appropriate HTTP status codes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40594759"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/health",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/signup",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Who Am I",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI64IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzYzMTY2MDk5LCJleHAiOjE3NjMxNjk2OTl9.eGMmwDVlWHRLUylTpDH74wq0kohUgymnfMi_ZIwS7C4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/me",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Players (Protected)",
+			"item": [
+				{
+					"name": "Get All Players",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzYzMTY2MDk5LCJleHAiOjE3NjMxNjk2OTl9.eGMmwDVlWHRLUylTpDH74wq0kohUgymnfMi_ZIwS7C4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Player",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzYzMTY2MDk5LCJleHAiOjE3NjMxNjk2OTl9.eGMmwDVlWHRLUylTpDH74wq0kohUgymnfMi_ZIwS7C4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Player",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzYzMTY2MDk5LCJleHAiOjE3NjMxNjk2OTl9.eGMmwDVlWHRLUylTpDH74wq0kohUgymnfMi_ZIwS7C4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Carlos2\",\n  \"first_lastname\": \"Sanchez2\",\n  \"second_lastname\": \"Lopez2\",\n  \"country\": \"Spain\",\n  \"email\": \"carlos2@example.com\",\n  \"phone\": \"+591 70712345\",\n  \"club_id\": 1,\n  \"category_id\": 2,\n  \"club_join_date\": \"2025-01-01\",\n  \"birth_date\": \"1980-11-08\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/players/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Player",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzYzMTY2MDk5LCJleHAiOjE3NjMxNjk2OTl9.eGMmwDVlWHRLUylTpDH74wq0kohUgymnfMi_ZIwS7C4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_lastname\": \"Smith\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/players/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Player",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzYzMTY2MDk5LCJleHAiOjE3NjMxNjk2OTl9.eGMmwDVlWHRLUylTpDH74wq0kohUgymnfMi_ZIwS7C4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clubs",
+			"item": [
+				{
+					"name": "Get All Clubs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clubs/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Club",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clubs/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Club",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Squash Madrid\",\n  \"city\": \"Madrid\",\n  \"country\": \"Spain\",\n  \"foundation_date\": \"2001-05-10\",\n  \"email\": \"info@madrid.club\",\n  \"phone\": \"111-111-1111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clubs/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Club",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"country\": \"Bolivia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clubs/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Club",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clubs/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Professional\",\n  \"description\": \"Top-level players\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/categories/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/categories/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/categories/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Matches",
+			"item": [
+				{
+					"name": "Create Match",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tournament_id\": 1,\n    \"player1_id\": 2,\n    \"player2_id\": 4,\n    \"round\": \"Final\",\n    \"match_date\": \"2025-03-12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/matches",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Matches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/matches",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Match",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/matches/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"matches",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Match",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"round\": \"Quarter Finals\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/matches/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"matches",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Match",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/matches/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"matches",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Get All Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/games",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games"
+							],
+							"query": [
+								{
+									"key": "match_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "game_number",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Game",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/games/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Game",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"match_id\": 4,\n    \"game_number\":4 ,\n    \"player1_points\": 11,\n    \"player2_points\": 7\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/games",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Game",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"game_number\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/games/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Game",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/games/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Player 1 Scores",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/games/:id/player1-scores",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games",
+								":id",
+								"player1-scores"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Player 2 Scores",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/games/:id/player2-scores",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"games",
+								":id",
+								"player2-scores"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

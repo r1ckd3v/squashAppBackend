@@ -19,7 +19,7 @@ module.exports = {
                 category: 'Junior',
             },
         ]);
-        // ✅ Reset the sequence so auto-increment continues after 3
+        // Reset the sequence so auto-increment continues after 3
         await q.sequelize
             .query(`SELECT setval(pg_get_serial_sequence('"Tournaments"', 'tournament_id'),
         (SELECT COALESCE(MAX("tournament_id"), 0) FROM "Tournaments"));`);
