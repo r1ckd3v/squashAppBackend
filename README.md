@@ -22,16 +22,16 @@ POST `/auth/login` - Login User
 
 GET `/auth/me` - Who am I (protected)
 
-## Players
+## Players ( Protected )
 
-POST `/players` - Create Player
+POST `/players` - Create Player (emmit `player:created` event)
 
-GET `/players` - Fetch All Players  
-GET `/players/:id` - Fetch Single Player by id
+GET `/players` - Fetch All Players (emmit `player:fetchAll` event)  
+GET `/players/:id` - Fetch Single Player by id (emmit `player:fetch` event)
 
-PATCH `/players/:id` - Update Player by id
+PATCH `/players/:id` - Update Player by id (emmit `player:update` event)
 
-DELETE `/players/:id` - Delete Player by id
+DELETE `/players/:id` - Delete Player by id (emmit `player:delete` event)
 
 ## Clubs
 
@@ -77,9 +77,9 @@ PATCH `/games/:id` - Update Game by id
 
 DELETE `/games/:id` - Delete Game by id
 
-PATCH `games/:id/player1-scores` - Player 1 Score++
+PATCH `games/:id/player1-scores` - Player 1 Score++ (emmit `player:score` event)
 
-PATCH `games/:id/player2-scores` - Player 1 Score++
+PATCH `games/:id/player2-scores` - Player 1 Score++ (emmit `player:score` event)
 
 # Websockets
 
