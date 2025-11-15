@@ -77,8 +77,9 @@ PATCH `/games/:id` - Update Game by id
 
 DELETE `/games/:id` - Delete Game by id
 
-PATCH `games/:id/player1-scores - Player 1 Score++  
-PATCH `games/:id/player2-scores - Player 1 Score++
+PATCH `games/:id/player1-scores` - Player 1 Score++
+
+PATCH `games/:id/player2-scores` - Player 1 Score++
 
 # Websockets
 
